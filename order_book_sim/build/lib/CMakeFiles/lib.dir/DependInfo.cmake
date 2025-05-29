@@ -9,8 +9,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/mradul/mtbt-data-handling/order_book_sim/lib/src/level_order_book.cpp" "lib/CMakeFiles/lib.dir/src/level_order_book.cpp.o" "gcc" "lib/CMakeFiles/lib.dir/src/level_order_book.cpp.o.d"
-  "/home/mradul/mtbt-data-handling/order_book_sim/lib/src/order.cpp" "lib/CMakeFiles/lib.dir/src/order.cpp.o" "gcc" "lib/CMakeFiles/lib.dir/src/order.cpp.o.d"
-  "/home/mradul/mtbt-data-handling/order_book_sim/lib/src/order_book.cpp" "lib/CMakeFiles/lib.dir/src/order_book.cpp.o" "gcc" "lib/CMakeFiles/lib.dir/src/order_book.cpp.o.d"
   "/home/mradul/mtbt-data-handling/order_book_sim/lib/src/read_data.cpp" "lib/CMakeFiles/lib.dir/src/read_data.cpp.o" "gcc" "lib/CMakeFiles/lib.dir/src/read_data.cpp.o.d"
   )
 

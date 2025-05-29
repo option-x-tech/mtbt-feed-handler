@@ -83,38 +83,10 @@ lib/CMakeFiles/lib.dir/src/read_data.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lib.dir/src/read_data.cpp.s"
 	cd /home/mradul/mtbt-data-handling/order_book_sim/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mradul/mtbt-data-handling/order_book_sim/lib/src/read_data.cpp -o CMakeFiles/lib.dir/src/read_data.cpp.s
 
-lib/CMakeFiles/lib.dir/src/order.cpp.o: lib/CMakeFiles/lib.dir/flags.make
-lib/CMakeFiles/lib.dir/src/order.cpp.o: /home/mradul/mtbt-data-handling/order_book_sim/lib/src/order.cpp
-lib/CMakeFiles/lib.dir/src/order.cpp.o: lib/CMakeFiles/lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mradul/mtbt-data-handling/order_book_sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object lib/CMakeFiles/lib.dir/src/order.cpp.o"
-	cd /home/mradul/mtbt-data-handling/order_book_sim/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lib/CMakeFiles/lib.dir/src/order.cpp.o -MF CMakeFiles/lib.dir/src/order.cpp.o.d -o CMakeFiles/lib.dir/src/order.cpp.o -c /home/mradul/mtbt-data-handling/order_book_sim/lib/src/order.cpp
-
-lib/CMakeFiles/lib.dir/src/order.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lib.dir/src/order.cpp.i"
-	cd /home/mradul/mtbt-data-handling/order_book_sim/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mradul/mtbt-data-handling/order_book_sim/lib/src/order.cpp > CMakeFiles/lib.dir/src/order.cpp.i
-
-lib/CMakeFiles/lib.dir/src/order.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lib.dir/src/order.cpp.s"
-	cd /home/mradul/mtbt-data-handling/order_book_sim/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mradul/mtbt-data-handling/order_book_sim/lib/src/order.cpp -o CMakeFiles/lib.dir/src/order.cpp.s
-
-lib/CMakeFiles/lib.dir/src/order_book.cpp.o: lib/CMakeFiles/lib.dir/flags.make
-lib/CMakeFiles/lib.dir/src/order_book.cpp.o: /home/mradul/mtbt-data-handling/order_book_sim/lib/src/order_book.cpp
-lib/CMakeFiles/lib.dir/src/order_book.cpp.o: lib/CMakeFiles/lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mradul/mtbt-data-handling/order_book_sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object lib/CMakeFiles/lib.dir/src/order_book.cpp.o"
-	cd /home/mradul/mtbt-data-handling/order_book_sim/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lib/CMakeFiles/lib.dir/src/order_book.cpp.o -MF CMakeFiles/lib.dir/src/order_book.cpp.o.d -o CMakeFiles/lib.dir/src/order_book.cpp.o -c /home/mradul/mtbt-data-handling/order_book_sim/lib/src/order_book.cpp
-
-lib/CMakeFiles/lib.dir/src/order_book.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lib.dir/src/order_book.cpp.i"
-	cd /home/mradul/mtbt-data-handling/order_book_sim/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mradul/mtbt-data-handling/order_book_sim/lib/src/order_book.cpp > CMakeFiles/lib.dir/src/order_book.cpp.i
-
-lib/CMakeFiles/lib.dir/src/order_book.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lib.dir/src/order_book.cpp.s"
-	cd /home/mradul/mtbt-data-handling/order_book_sim/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mradul/mtbt-data-handling/order_book_sim/lib/src/order_book.cpp -o CMakeFiles/lib.dir/src/order_book.cpp.s
-
 lib/CMakeFiles/lib.dir/src/level_order_book.cpp.o: lib/CMakeFiles/lib.dir/flags.make
 lib/CMakeFiles/lib.dir/src/level_order_book.cpp.o: /home/mradul/mtbt-data-handling/order_book_sim/lib/src/level_order_book.cpp
 lib/CMakeFiles/lib.dir/src/level_order_book.cpp.o: lib/CMakeFiles/lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mradul/mtbt-data-handling/order_book_sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object lib/CMakeFiles/lib.dir/src/level_order_book.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mradul/mtbt-data-handling/order_book_sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object lib/CMakeFiles/lib.dir/src/level_order_book.cpp.o"
 	cd /home/mradul/mtbt-data-handling/order_book_sim/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lib/CMakeFiles/lib.dir/src/level_order_book.cpp.o -MF CMakeFiles/lib.dir/src/level_order_book.cpp.o.d -o CMakeFiles/lib.dir/src/level_order_book.cpp.o -c /home/mradul/mtbt-data-handling/order_book_sim/lib/src/level_order_book.cpp
 
 lib/CMakeFiles/lib.dir/src/level_order_book.cpp.i: cmake_force
@@ -128,20 +100,16 @@ lib/CMakeFiles/lib.dir/src/level_order_book.cpp.s: cmake_force
 # Object files for target lib
 lib_OBJECTS = \
 "CMakeFiles/lib.dir/src/read_data.cpp.o" \
-"CMakeFiles/lib.dir/src/order.cpp.o" \
-"CMakeFiles/lib.dir/src/order_book.cpp.o" \
 "CMakeFiles/lib.dir/src/level_order_book.cpp.o"
 
 # External object files for target lib
 lib_EXTERNAL_OBJECTS =
 
 lib/liblib.a: lib/CMakeFiles/lib.dir/src/read_data.cpp.o
-lib/liblib.a: lib/CMakeFiles/lib.dir/src/order.cpp.o
-lib/liblib.a: lib/CMakeFiles/lib.dir/src/order_book.cpp.o
 lib/liblib.a: lib/CMakeFiles/lib.dir/src/level_order_book.cpp.o
 lib/liblib.a: lib/CMakeFiles/lib.dir/build.make
 lib/liblib.a: lib/CMakeFiles/lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mradul/mtbt-data-handling/order_book_sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library liblib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mradul/mtbt-data-handling/order_book_sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library liblib.a"
 	cd /home/mradul/mtbt-data-handling/order_book_sim/build/lib && $(CMAKE_COMMAND) -P CMakeFiles/lib.dir/cmake_clean_target.cmake
 	cd /home/mradul/mtbt-data-handling/order_book_sim/build/lib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lib.dir/link.txt --verbose=$(VERBOSE)
 

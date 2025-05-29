@@ -1,5 +1,4 @@
 #include "read_data.hpp"
-#include "order_book.hpp"
 #include "level_order_book.hpp"
 
 int main()
@@ -20,6 +19,9 @@ int main()
     std::unordered_map<int, LevelOrderBook> order_books;
 
     long timer = -1;
+
+    int low = INT32_MAX; 
+    int high = 0; 
 
     // Processing the stream of messages
     while (index < fileSize)
@@ -49,7 +51,8 @@ int main()
             int token = orderMessage.token;
             LevelOrderBook &order_book = order_books[token];
 
-            
+            low = std::min(low, token); 
+            high = std::max(high, token); 
 
             if (timestamp >= timer + 10000000000 || timer == -1)
             {
@@ -85,10 +88,10 @@ int main()
             if (timestamp >= timer + 10000000000 || timer == -1)
             {
                 timer = timestamp + 10000000000;
-                order_book.print_statistics(token, timestamp);
             }
-
+            
             // tradeMessage.printValues();
+            // order_book.print_statistics(token, timestamp);
             order_book.process_trade_message(tradeMessage);
         }
         else if (message_type == 'K' || message_type == 'C')
@@ -113,5 +116,7 @@ int main()
     auto end_time = std::chrono::high_resolution_clock::now();
     double time_elapsed = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time).count();
     std::cout << "Elapsed time: " << time_elapsed << std::endl;
-    std::cout << "Data rate: " << fileSize / time_elapsed << "MBps" << std::endl;
+    std::cout << "Data rate: " << 1e-6 * fileSize / time_elapsed << "MBps" << std::endl;
+    
+    std::cout << low << " " << high << std::endl; 
 }

@@ -154,54 +154,6 @@ src/level_order_book.cpp.s:
 	cd /home/mradul/mtbt-data-handling/order_book_sim/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/src/level_order_book.cpp.s
 .PHONY : src/level_order_book.cpp.s
 
-src/order.o: src/order.cpp.o
-.PHONY : src/order.o
-
-# target to build an object file
-src/order.cpp.o:
-	cd /home/mradul/mtbt-data-handling/order_book_sim/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/src/order.cpp.o
-.PHONY : src/order.cpp.o
-
-src/order.i: src/order.cpp.i
-.PHONY : src/order.i
-
-# target to preprocess a source file
-src/order.cpp.i:
-	cd /home/mradul/mtbt-data-handling/order_book_sim/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/src/order.cpp.i
-.PHONY : src/order.cpp.i
-
-src/order.s: src/order.cpp.s
-.PHONY : src/order.s
-
-# target to generate assembly for a file
-src/order.cpp.s:
-	cd /home/mradul/mtbt-data-handling/order_book_sim/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/src/order.cpp.s
-.PHONY : src/order.cpp.s
-
-src/order_book.o: src/order_book.cpp.o
-.PHONY : src/order_book.o
-
-# target to build an object file
-src/order_book.cpp.o:
-	cd /home/mradul/mtbt-data-handling/order_book_sim/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/src/order_book.cpp.o
-.PHONY : src/order_book.cpp.o
-
-src/order_book.i: src/order_book.cpp.i
-.PHONY : src/order_book.i
-
-# target to preprocess a source file
-src/order_book.cpp.i:
-	cd /home/mradul/mtbt-data-handling/order_book_sim/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/src/order_book.cpp.i
-.PHONY : src/order_book.cpp.i
-
-src/order_book.s: src/order_book.cpp.s
-.PHONY : src/order_book.s
-
-# target to generate assembly for a file
-src/order_book.cpp.s:
-	cd /home/mradul/mtbt-data-handling/order_book_sim/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/src/order_book.cpp.s
-.PHONY : src/order_book.cpp.s
-
 src/read_data.o: src/read_data.cpp.o
 .PHONY : src/read_data.o
 
@@ -238,12 +190,6 @@ help:
 	@echo "... src/level_order_book.o"
 	@echo "... src/level_order_book.i"
 	@echo "... src/level_order_book.s"
-	@echo "... src/order.o"
-	@echo "... src/order.i"
-	@echo "... src/order.s"
-	@echo "... src/order_book.o"
-	@echo "... src/order_book.i"
-	@echo "... src/order_book.s"
 	@echo "... src/read_data.o"
 	@echo "... src/read_data.i"
 	@echo "... src/read_data.s"

@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/mradul/mtbt-data-handling/order_book_sim/lib/include
 
-CXX_FLAGS = 
+CXX_FLAGS = -O3 -DNDEBUG -Ofast
 
