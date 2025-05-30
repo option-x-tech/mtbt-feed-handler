@@ -16,7 +16,6 @@ int LevelOrderBook::get_best_ask()
 
 void LevelOrderBook::process_new_order_message(OrderMessage &orderMessage)
 {
-    Order order(orderMessage.timestamp, orderMessage.price, orderMessage.quantity);
 
     // Check if active order exists (It should not)
     assert(active_order_message.quantity == 0);
@@ -56,6 +55,7 @@ void LevelOrderBook::process_new_order_message(OrderMessage &orderMessage)
             if (buy_order_book_iterator->price == orderMessage.price)
             {
                 buy_order_book_iterator->total_quantity += orderMessage.quantity;
+                Order order(orderMessage.timestamp, orderMessage.price, orderMessage.quantity, buy_order_book_iterator);
                 buy_order_level[orderMessage.orderID] = order;
                 level_found = true;
                 break;
@@ -63,6 +63,7 @@ void LevelOrderBook::process_new_order_message(OrderMessage &orderMessage)
             else if (buy_order_book_iterator->price < orderMessage.price)
             {
                 buy_order_book_iterator = buy_order_book.insert(buy_order_book_iterator, Level(orderMessage.quantity, orderMessage.price));
+                Order order(orderMessage.timestamp, orderMessage.price, orderMessage.quantity, buy_order_book_iterator);
                 buy_order_level[orderMessage.orderID] = order;
                 level_found = true;
                 break;
@@ -72,6 +73,7 @@ void LevelOrderBook::process_new_order_message(OrderMessage &orderMessage)
         if (!level_found)
         {
             buy_order_book_iterator = buy_order_book.insert(buy_order_book_iterator, Level(orderMessage.quantity, orderMessage.price));
+            Order order(orderMessage.timestamp, orderMessage.price, orderMessage.quantity, buy_order_book_iterator);
             buy_order_level[orderMessage.orderID] = order;
         }
     }
@@ -87,6 +89,7 @@ void LevelOrderBook::process_new_order_message(OrderMessage &orderMessage)
             if (sell_order_book_iterator->price == orderMessage.price)
             {
                 sell_order_book_iterator->total_quantity += orderMessage.quantity;
+                Order order(orderMessage.timestamp, orderMessage.price, orderMessage.quantity, sell_order_book_iterator);
                 sell_order_level[orderMessage.orderID] = order;
                 level_found = true;
                 break;
@@ -94,6 +97,7 @@ void LevelOrderBook::process_new_order_message(OrderMessage &orderMessage)
             else if (sell_order_book_iterator->price > orderMessage.price)
             {
                 sell_order_book_iterator = sell_order_book.insert(sell_order_book_iterator, Level(orderMessage.quantity, orderMessage.price));
+                Order order(orderMessage.timestamp, orderMessage.price, orderMessage.quantity, sell_order_book_iterator);
                 sell_order_level[orderMessage.orderID] = order;
                 level_found = true;
                 break;
@@ -103,6 +107,7 @@ void LevelOrderBook::process_new_order_message(OrderMessage &orderMessage)
         if (!level_found)
         {
             sell_order_book_iterator = sell_order_book.insert(sell_order_book_iterator, Level(orderMessage.quantity, orderMessage.price));
+            Order order(orderMessage.timestamp, orderMessage.price, orderMessage.quantity, sell_order_book_iterator);
             sell_order_level[orderMessage.orderID] = order;
         }
     }
@@ -122,7 +127,6 @@ void LevelOrderBook::check_and_insert_active_order()
 
 void LevelOrderBook::process_cancel_order_message(OrderMessage &orderMessage)
 {
-    Order order(orderMessage.timestamp, orderMessage.price, orderMessage.quantity);
 
     // If both the Buy and Ask orderbooks are not empty then check if they are not crossing
     if (!buy_order_book.empty() && !sell_order_book.empty())
@@ -144,74 +148,51 @@ void LevelOrderBook::process_cancel_order_message(OrderMessage &orderMessage)
     // If an active order is not present or the cancel message is not for it
     if (orderMessage.orderType == 'B')
     {
+        auto buy_order_iterator = buy_order_level.find(orderMessage.orderID);
+
         // sometimes there is no such order id for which this cancellation or modification is done
-        if (buy_order_level.find(orderMessage.orderID) == buy_order_level.end())
+        if (buy_order_iterator == buy_order_level.end())
         {
             // orderMessage.printValues();
             return;
         }
 
-        auto &ref_order = buy_order_level[orderMessage.orderID];
-        int price = ref_order.price;
+        auto buy_order_book_iterator = buy_order_iterator->second.order_iterator; 
 
-        auto buy_order_book_iterator = buy_order_book.begin();
-        bool order_found = false;
-        while (buy_order_book_iterator != buy_order_book.end())
+        // Update the book
+        buy_order_book_iterator->total_quantity -= buy_order_iterator->second.quantity;
+        assert(buy_order_book_iterator->total_quantity >= 0);
+        // Check for empty Level
+        if (buy_order_book_iterator->total_quantity == 0)
         {
-            if (price == buy_order_book_iterator->price)
-            {
-                // Update the book
-                buy_order_book_iterator->total_quantity -= ref_order.quantity;
-                assert(buy_order_book_iterator->total_quantity >= 0);
-                // Check for empty Level
-                if (buy_order_book_iterator->total_quantity == 0)
-                {
-                    buy_order_book.erase(buy_order_book_iterator);
-                }
-                // Update metadata
-                buy_order_level.erase(orderMessage.orderID);
-                order_found = true; 
-                break;
-            }
-            ++buy_order_book_iterator;
+            buy_order_book.erase(buy_order_book_iterator);
         }
-        assert(order_found == true);
+        // Update metadata
+        buy_order_level.erase(buy_order_iterator);
     }
     if (orderMessage.orderType == 'S')
     {
+        auto sell_order_iterator = sell_order_level.find(orderMessage.orderID);
+
         // sometimes there is no such order id for which this cancellation or modification is done
-        if (sell_order_level.find(orderMessage.orderID) == sell_order_level.end())
+        if (sell_order_iterator == sell_order_level.end())
         {
             // orderMessage.printValues();
             return;
         }
 
-        auto &ref_order = sell_order_level[orderMessage.orderID];
-        int price = ref_order.price;
+        auto sell_order_book_iterator = sell_order_iterator->second.order_iterator;
 
-        auto sell_order_book_iterator = sell_order_book.begin();
-        bool order_found = false; 
-        while (sell_order_book_iterator != sell_order_book.end())
+        // Update the book
+        sell_order_book_iterator->total_quantity -= sell_order_iterator->second.quantity;
+        assert(sell_order_book_iterator->total_quantity >= 0);
+        // Check for empty Level
+        if (sell_order_book_iterator->total_quantity == 0)
         {
-            if (price == sell_order_book_iterator->price)
-            {
-                // Update the book
-                sell_order_book_iterator->total_quantity -= ref_order.quantity;
-                assert(sell_order_book_iterator->total_quantity >= 0);
-
-                // Check for empty Level
-                if (sell_order_book_iterator->total_quantity == 0)
-                {
-                    sell_order_book.erase(sell_order_book_iterator);
-                }
-                // Update metadata
-                sell_order_level.erase(orderMessage.orderID);
-                order_found = true; 
-                break;
-            }
-            ++sell_order_book_iterator;
+            sell_order_book.erase(sell_order_book_iterator);
         }
-        assert(order_found == true);
+        // Update metadata
+        sell_order_level.erase(sell_order_iterator);
     }
 
     check_and_insert_active_order();

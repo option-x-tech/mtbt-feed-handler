@@ -134,9 +134,9 @@ int main()
     }
 
     auto end_time = std::chrono::high_resolution_clock::now();
-    double time_elapsed = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time).count();
-    std::cout << "Elapsed time: " << time_elapsed << std::endl;
-    std::cout << "Data rate: " << 1e-6 * fileSize / time_elapsed << "MBps" << std::endl;
+    double time_elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "Elapsed time: " << time_elapsed  << " Milliseconds" << std::endl;
+    std::cout << "Data rate: " << fileSize / time_elapsed << "MBps" << std::endl;
 
     std::cout << low << " " << high << std::endl;
 }

@@ -5,11 +5,13 @@
 #include <fstream>
 #include <cstring>
 #include <vector>
+#include <list>
 #include <unordered_map>
 #include <iomanip>
 #include <assert.h>
 #include <set>
 #include <map>
+#include <deque>
 #include <chrono>
 #include <net/ethernet.h>
 #include <arpa/inet.h>

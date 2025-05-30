@@ -3,14 +3,17 @@
 
 #include "read_data.hpp"
 
+class Level; 
+
 class Order
 {
 public:
     long timestamp;
     int price;
     int quantity;
-    Order(long timestamp_, int price_, int quantity_) : timestamp(timestamp_), price(price_), quantity(quantity_) {}
-    Order(const Order &order) : timestamp(order.timestamp), price(order.price), quantity(order.quantity) {}
+    std::list<Level>::iterator order_iterator;
+    Order(long timestamp_, int price_, int quantity_, std::list<Level>::iterator order_iterator_) : timestamp(timestamp_), price(price_), quantity(quantity_), order_iterator(order_iterator_) {}
+    Order(const Order &order) : timestamp(order.timestamp), price(order.price), quantity(order.quantity), order_iterator(order.order_iterator) {}
     Order() {};
 };
 
@@ -33,8 +36,8 @@ public:
 class LevelOrderBook
 {
     // Vector of Levels sorted on price
-    std::vector<Level> sell_order_book; // Low to High
-    std::vector<Level> buy_order_book;  // High to Low
+    std::list<Level> sell_order_book; // Low to High
+    std::list<Level> buy_order_book;  // High to Low
 
     // Unordered map of orderId to its order metadata
     std::unordered_map<double, Order> buy_order_level;
