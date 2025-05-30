@@ -16,7 +16,11 @@ int LevelOrderBook::get_best_ask()
 
 void LevelOrderBook::process_new_order_message(OrderMessage &orderMessage)
 {
-    Order order(orderMessage.timestamp, orderMessage.price, orderMessage.quantity);
+    Order *order = orderPool.allocate();
+    // Use placement new to construct object
+    new (order) Order(orderMessage.timestamp,
+                      orderMessage.price,
+                      orderMessage.quantity);
 
     // Check if active order exists (It should not)
     assert(active_order_message.quantity == 0);
@@ -122,8 +126,6 @@ void LevelOrderBook::check_and_insert_active_order()
 
 void LevelOrderBook::process_cancel_order_message(OrderMessage &orderMessage)
 {
-    Order order(orderMessage.timestamp, orderMessage.price, orderMessage.quantity);
-
     // If both the Buy and Ask orderbooks are not empty then check if they are not crossing
     if (!buy_order_book.empty() && !sell_order_book.empty())
     {
@@ -152,7 +154,7 @@ void LevelOrderBook::process_cancel_order_message(OrderMessage &orderMessage)
         }
 
         auto &ref_order = buy_order_level[orderMessage.orderID];
-        int price = ref_order.price;
+        int price = ref_order->price;
 
         auto buy_order_book_iterator = buy_order_book.begin();
         bool order_found = false;
@@ -161,7 +163,7 @@ void LevelOrderBook::process_cancel_order_message(OrderMessage &orderMessage)
             if (price == buy_order_book_iterator->price)
             {
                 // Update the book
-                buy_order_book_iterator->total_quantity -= ref_order.quantity;
+                buy_order_book_iterator->total_quantity -= ref_order->quantity;
                 assert(buy_order_book_iterator->total_quantity >= 0);
                 // Check for empty Level
                 if (buy_order_book_iterator->total_quantity == 0)
@@ -169,8 +171,9 @@ void LevelOrderBook::process_cancel_order_message(OrderMessage &orderMessage)
                     buy_order_book.erase(buy_order_book_iterator);
                 }
                 // Update metadata
+                orderPool.deallocate(ref_order);
                 buy_order_level.erase(orderMessage.orderID);
-                order_found = true; 
+                order_found = true;
                 break;
             }
             ++buy_order_book_iterator;
@@ -187,16 +190,16 @@ void LevelOrderBook::process_cancel_order_message(OrderMessage &orderMessage)
         }
 
         auto &ref_order = sell_order_level[orderMessage.orderID];
-        int price = ref_order.price;
+        int price = ref_order->price;
 
         auto sell_order_book_iterator = sell_order_book.begin();
-        bool order_found = false; 
+        bool order_found = false;
         while (sell_order_book_iterator != sell_order_book.end())
         {
             if (price == sell_order_book_iterator->price)
             {
                 // Update the book
-                sell_order_book_iterator->total_quantity -= ref_order.quantity;
+                sell_order_book_iterator->total_quantity -= ref_order->quantity;
                 assert(sell_order_book_iterator->total_quantity >= 0);
 
                 // Check for empty Level
@@ -205,8 +208,9 @@ void LevelOrderBook::process_cancel_order_message(OrderMessage &orderMessage)
                     sell_order_book.erase(sell_order_book_iterator);
                 }
                 // Update metadata
+                orderPool.deallocate(ref_order);
                 sell_order_level.erase(orderMessage.orderID);
-                order_found = true; 
+                order_found = true;
                 break;
             }
             ++sell_order_book_iterator;
@@ -237,14 +241,14 @@ void LevelOrderBook::process_trade_message(TradeMessage &trade_message)
         auto &ref_order = sell_order_level[trade_message.sellOrderID];
 
         // trade must be happening at price higher than buy price in order book
-        assert(trade_message.tradePrice >= ref_order.price);
+        assert(trade_message.tradePrice >= ref_order->price);
 
         // Trade the order
-        ref_order.quantity -= trade_message.tradeQuantity;
+        ref_order->quantity -= trade_message.tradeQuantity;
         auto sell_order_book_iterator = sell_order_book.begin();
         while (sell_order_book_iterator != sell_order_book.end())
         {
-            if (ref_order.price == sell_order_book_iterator->price)
+            if (ref_order->price == sell_order_book_iterator->price)
             {
                 // Update the book
                 sell_order_book_iterator->total_quantity -= trade_message.tradeQuantity;
@@ -259,8 +263,9 @@ void LevelOrderBook::process_trade_message(TradeMessage &trade_message)
             ++sell_order_book_iterator;
         }
         // Update metadata
-        if (ref_order.quantity == 0)
+        if (ref_order->quantity == 0)
         {
+            orderPool.deallocate(ref_order);
             sell_order_level.erase(trade_message.sellOrderID);
         }
     }
@@ -270,14 +275,14 @@ void LevelOrderBook::process_trade_message(TradeMessage &trade_message)
         auto &ref_order = buy_order_level[trade_message.buyOrderID];
 
         // trade must be happening at price lower than sell price in order book
-        assert(trade_message.tradePrice <= ref_order.price);
+        assert(trade_message.tradePrice <= ref_order->price);
 
         // Trade the order
-        ref_order.quantity -= trade_message.tradeQuantity;
+        ref_order->quantity -= trade_message.tradeQuantity;
         auto buy_order_book_iterator = buy_order_book.begin();
         while (buy_order_book_iterator != buy_order_book.end())
         {
-            if (ref_order.price == buy_order_book_iterator->price)
+            if (ref_order->price == buy_order_book_iterator->price)
             {
                 // Update the book
                 buy_order_book_iterator->total_quantity -= trade_message.tradeQuantity;
@@ -292,8 +297,9 @@ void LevelOrderBook::process_trade_message(TradeMessage &trade_message)
             ++buy_order_book_iterator;
         }
         // Update metadata
-        if (ref_order.quantity == 0)
+        if (ref_order->quantity == 0)
         {
+            orderPool.deallocate(ref_order);
             buy_order_level.erase(trade_message.buyOrderID);
         }
     }
