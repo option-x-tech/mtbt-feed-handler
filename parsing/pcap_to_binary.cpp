@@ -176,6 +176,7 @@ int main(int argc, char **argv)
 
     int last_seq_num = 0;
 
+
     // Processing the stream of messages
     while (index < file_size)
     {
@@ -238,6 +239,7 @@ int main(int argc, char **argv)
             buffer_index += sizeof(multicast_stream_header);
             // Write stream header
             myfile.write((char *)&stream_hdr, sizeof(multicast_stream_header));
+
 
             // Read data and process it
             // stream_hdr.print();
@@ -317,4 +319,6 @@ int main(int argc, char **argv)
     }
     // End of file parsing
     myfile.close();
+
+
 }

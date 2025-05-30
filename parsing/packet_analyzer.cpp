@@ -151,6 +151,7 @@ int main(int argc, char **argv)
         exit(1);
     }
 
+    std::set<int> stream_ids;
 
     // Take token path from command line input
     const char *filename = argv[1];
@@ -230,6 +231,7 @@ int main(int argc, char **argv)
             
             // Read data and process it
             // stream_hdr.print();
+            stream_ids.insert(stream_hdr.stream_id);
 
             char msg_type = buffer[buffer_index]; 
             if(msg_type == 'T' || msg_type == 'K' || msg_type == 'C')
@@ -278,4 +280,8 @@ int main(int argc, char **argv)
         data_in_buffer = data_in_buffer - buffer_index;
     }
     // End of file parsing
+    for (auto it : stream_ids)
+    {
+        std::cout << it << std::endl;
+    }
 }

@@ -11,16 +11,6 @@ public:
     int quantity;
     Order(long timestamp_, int price_, int quantity_) : timestamp(timestamp_), price(price_), quantity(quantity_) {}
     Order(const Order &order) : timestamp(order.timestamp), price(order.price), quantity(order.quantity) {}
-    // Order& operator=(const Order& other) 
-    // {
-    //     if(this != &other) 
-    //     {
-    //         timestamp = other.timestamp; 
-    //         price = other.price; 
-    //         quantity = other.quantity; 
-    //     }
-    //     return *this; 
-    // }
     Order() {};
 };
 
@@ -34,9 +24,6 @@ public:
 
     bool empty();
     size_t size();
-    int highest() const;
-    int lowest() const;
-    bool find_order(double orderId);
 
     Level(int quantity_, int price_) : total_quantity(quantity_), price(price_)
     {

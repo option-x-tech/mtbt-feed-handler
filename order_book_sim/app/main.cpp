@@ -13,15 +13,17 @@ int main()
 
     std::cout << "File Size: " << fileSize << std::endl;
 
-    // OrderBook order_book;
-
     // Many order books
-    std::unordered_map<int, LevelOrderBook> order_books;
+    // std::unordered_map<int, LevelOrderBook> order_books;
+    std::vector<LevelOrderBook> order_books;
+    std::unordered_map<int, int> token_index_mapping;
+
+    int current_index = 0;
 
     long timer = -1;
 
-    int low = INT32_MAX; 
-    int high = 0; 
+    int low = INT32_MAX;
+    int high = 0;
 
     // Processing the stream of messages
     while (index < fileSize)
@@ -49,10 +51,22 @@ int main()
             long timestamp = orderMessage.timestamp;
 
             int token = orderMessage.token;
-            LevelOrderBook &order_book = order_books[token];
+            auto token_index_iterator = token_index_mapping.find(token);
+            int index; 
+            if (token_index_iterator == token_index_mapping.end())
+            {
+                order_books.push_back(LevelOrderBook()); 
+                index = current_index; 
+                token_index_mapping[token] = current_index++;
+            }
+            else 
+            {
+                index = token_index_iterator->second; 
+            }
+            LevelOrderBook &order_book = order_books[index];
 
-            low = std::min(low, token); 
-            high = std::max(high, token); 
+            low = std::min(low, token);
+            high = std::max(high, token);
 
             if (timestamp >= timer + 10000000000 || timer == -1)
             {
@@ -83,13 +97,19 @@ int main()
             long timestamp = tradeMessage.timestamp;
 
             int token = tradeMessage.token;
-            LevelOrderBook &order_book = order_books[token];
+            auto token_index_iterator = token_index_mapping.find(token);
+            if (token_index_iterator == token_index_mapping.end())
+            {
+                order_books.push_back(LevelOrderBook());
+                token_index_mapping[token] = current_index++;
+            }
+            LevelOrderBook &order_book = order_books[token_index_mapping[token]];
 
             if (timestamp >= timer + 10000000000 || timer == -1)
             {
                 timer = timestamp + 10000000000;
             }
-            
+
             // tradeMessage.printValues();
             // order_book.print_statistics(token, timestamp);
             order_book.process_trade_message(tradeMessage);
@@ -104,9 +124,9 @@ int main()
         }
         else if (message_type == 'G' || message_type == 'H' || message_type == 'J')
         {
-            index += sizeof(OrderMessage); 
+            index += sizeof(OrderMessage);
         }
-        else 
+        else
         {
             std::cout << message_type << std::endl;
             exit(0);
@@ -117,6 +137,6 @@ int main()
     double time_elapsed = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time).count();
     std::cout << "Elapsed time: " << time_elapsed << std::endl;
     std::cout << "Data rate: " << 1e-6 * fileSize / time_elapsed << "MBps" << std::endl;
-    
-    std::cout << low << " " << high << std::endl; 
+
+    std::cout << low << " " << high << std::endl;
 }

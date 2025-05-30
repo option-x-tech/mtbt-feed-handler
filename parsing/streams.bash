@@ -1,0 +1,1 @@
+tcpdump -q -n -i bondteam3 udp -l | awk '{match($3, /(.*)\.([^.]*)$/, src); match($5, /(.*)\.([^.]*):$/, dst); if (src[1]!="" && dst[1]!="") { stream = "Src IP: " src[1] ", Src Port: " src[2] " -> Dst IP: " dst[1] ", Dst Port: " dst[2]; if (!seen[stream]++) print stream } }'

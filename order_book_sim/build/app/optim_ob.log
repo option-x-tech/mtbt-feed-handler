@@ -11,6 +11,279 @@ bid_order_book: 23670:75 23660:225 23640:75 23625:150 23620:75 23610:75 23605:75
 ask_order_book: 23765:525 23770:300 23780:825 23785:225 23795:375 23800:600 23810:225 23815:525 
 orders: 415
 
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468519
+Order Message Attributes
+  Message Type: N
+  Time Stamp: 1432890932773500063
+  Order ID: 1000000000582793
+  Token: 61670
+  Order Type: B
+  Price: 1715
+  Quantity: 75
+
+Header Attributes
+  Message Length: 45
+  Stream ID: 1
+  Sequence Number: 1468520
+Trade Message Attributes
+  Message Type: T
+  Time Stamp: 1432890932773948949
+  Buy Order ID: 1000000000580238
+  Sell Order ID: 1000000000582794
+  Token: 61684
+  Trade Price: 7840
+  Trade Quantity: 150
+
+Header Attributes
+  Message Length: 45
+  Stream ID: 1
+  Sequence Number: 1468521
+Trade Message Attributes
+  Message Type: T
+  Time Stamp: 1432890932773948949
+  Buy Order ID: 1000000000582695
+  Sell Order ID: 1000000000582794
+  Token: 61684
+  Trade Price: 7840
+  Trade Quantity: 300
+
+Header Attributes
+  Message Length: 45
+  Stream ID: 1
+  Sequence Number: 1468522
+Trade Message Attributes
+  Message Type: T
+  Time Stamp: 1432890932773948949
+  Buy Order ID: 1000000000581105
+  Sell Order ID: 1000000000582794
+  Token: 61684
+  Trade Price: 7840
+  Trade Quantity: 225
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468523
+Order Message Attributes
+  Message Type: N
+  Time Stamp: 1432890932774021102
+  Order ID: 1000000000582795
+  Token: 61684
+  Order Type: B
+  Price: 7845
+  Quantity: 150
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468524
+Order Message Attributes
+  Message Type: X
+  Time Stamp: 1432890932774026884
+  Order ID: 1000000000582710
+  Token: 61684
+  Order Type: B
+  Price: 7840
+  Quantity: 150
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468525
+Order Message Attributes
+  Message Type: N
+  Time Stamp: 1432890932774087962
+  Order ID: 1000000000582796
+  Token: 61684
+  Order Type: S
+  Price: 7880
+  Quantity: 225
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468526
+Order Message Attributes
+  Message Type: N
+  Time Stamp: 1432890932774091025
+  Order ID: 1000000000582797
+  Token: 61684
+  Order Type: B
+  Price: 7845
+  Quantity: 300
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468527
+Order Message Attributes
+  Message Type: M
+  Time Stamp: 1432890932774130506
+  Order ID: 1000000000582639
+  Token: 40467
+  Order Type: S
+  Price: 49790
+  Quantity: 150
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468528
+Order Message Attributes
+  Message Type: N
+  Time Stamp: 1432890932774139607
+  Order ID: 1000000000582798
+  Token: 61684
+  Order Type: S
+  Price: 8700
+  Quantity: 75
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468529
+Order Message Attributes
+  Message Type: X
+  Time Stamp: 1432890932774207356
+  Order ID: 1000000000582799
+  Token: 61763
+  Order Type: B
+  Price: 0
+  Quantity: 1200
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468530
+Order Message Attributes
+  Message Type: N
+  Time Stamp: 1432890932774212920
+  Order ID: 1000000000582800
+  Token: 61763
+  Order Type: S
+  Price: 6285
+  Quantity: 75
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468531
+Order Message Attributes
+  Message Type: N
+  Time Stamp: 1432890932774215997
+  Order ID: 1000000000582801
+  Token: 57133
+  Order Type: B
+  Price: 2478430
+  Quantity: 750
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468532
+Order Message Attributes
+  Message Type: N
+  Time Stamp: 1432890932774275452
+  Order ID: 1000000000582802
+  Token: 61763
+  Order Type: B
+  Price: 6260
+  Quantity: 75
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468533
+Order Message Attributes
+  Message Type: N
+  Time Stamp: 1432890932774278556
+  Order ID: 1000000000582803
+  Token: 61763
+  Order Type: S
+  Price: 6285
+  Quantity: 75
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468534
+Order Message Attributes
+  Message Type: M
+  Time Stamp: 1432890932774281634
+  Order ID: 1000000000540425
+  Token: 61763
+  Order Type: B
+  Price: 6220
+  Quantity: 150
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468535
+Order Message Attributes
+  Message Type: N
+  Time Stamp: 1432890932774391191
+  Order ID: 1000000000582804
+  Token: 61750
+  Order Type: B
+  Price: 23420
+  Quantity: 75
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468536
+Order Message Attributes
+  Message Type: N
+  Time Stamp: 1432890932774418537
+  Order ID: 1000000000582805
+  Token: 40535
+  Order Type: B
+  Price: 2790
+  Quantity: 375
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468537
+Order Message Attributes
+  Message Type: M
+  Time Stamp: 1432890932774479882
+  Order ID: 1000000000551280
+  Token: 40535
+  Order Type: B
+  Price: 2795
+  Quantity: 450
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468538
+Order Message Attributes
+  Message Type: M
+  Time Stamp: 1432890932774524289
+  Order ID: 1000000000573635
+  Token: 61557
+  Order Type: B
+  Price: 98690
+  Quantity: 75
+
+Header Attributes
+  Message Length: 38
+  Stream ID: 1
+  Sequence Number: 1468539
+Order Message Attributes
+  Message Type: X
+  Time Stamp: 1432890932774541674
+  Order ID: 1000000000582736
+  Token: 61750
+  Order Type: S
+  Price: 23530
+  Quantity: 150
+
 token: 61763
 timestamp: 1432890940017042815
 bid_order_book: 6425:150 6420:825 6415:450 6410:1125 6405:375 6400:1050 6395:75 6390:525 
@@ -143,5 +416,6 @@ bid_order_book: 19375:65 19370:65 19330:65 19325:65 19320:65 19290:260 19220:195
 ask_order_book: 19485:65 19490:65 19495:65 19500:130 19505:65 19515:65 19550:195 19555:65 
 orders: 109
 
-Elapsed time: 58
-Data rate: 36.221MBps
+Elapsed time: 4
+Data rate: 460.578971249999995052348822355MBps
+40351 89639
