@@ -150,6 +150,7 @@ void LevelOrderBook::process_cancel_order_message(OrderMessage &orderMessage)
         if (buy_order_level.find(orderMessage.orderID) == buy_order_level.end())
         {
             // orderMessage.printValues();
+            // exit(0); 
             return;
         }
 

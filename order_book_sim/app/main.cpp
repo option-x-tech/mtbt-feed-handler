@@ -52,16 +52,16 @@ int main()
 
             int token = orderMessage.token;
             auto token_index_iterator = token_index_mapping.find(token);
-            int index; 
+            int index;
             if (token_index_iterator == token_index_mapping.end())
             {
-                order_books.push_back(LevelOrderBook()); 
-                index = current_index; 
+                order_books.push_back(LevelOrderBook());
+                index = current_index;
                 token_index_mapping[token] = current_index++;
             }
-            else 
+            else
             {
-                index = token_index_iterator->second; 
+                index = token_index_iterator->second;
             }
             LevelOrderBook &order_book = order_books[index];
 
@@ -74,7 +74,12 @@ int main()
                 order_book.print_statistics(token, timestamp);
             }
 
+            if (orderMessage.orderID == 1000000000582799)
+            {
+                orderMessage.printValues();
+            }
             // orderMessage.printValues();
+
             if (message_type == 'N')
             {
                 order_book.process_new_order_message(orderMessage);
@@ -124,6 +129,12 @@ int main()
         }
         else if (message_type == 'G' || message_type == 'H' || message_type == 'J')
         {
+            OrderMessage orderMessage;
+            std::memcpy(&orderMessage, &fileData[index], sizeof(OrderMessage));
+            if (orderMessage.orderID == 1000000000582799)
+            {
+                orderMessage.printValues();
+            }
             index += sizeof(OrderMessage);
         }
         else
@@ -134,9 +145,9 @@ int main()
     }
 
     auto end_time = std::chrono::high_resolution_clock::now();
-    double time_elapsed = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time).count();
+    double time_elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
     std::cout << "Elapsed time: " << time_elapsed << std::endl;
-    std::cout << "Data rate: " << 1e-6 * fileSize / time_elapsed << "MBps" << std::endl;
+    std::cout << "Data rate: " << fileSize / time_elapsed << "MBps" << std::endl;
 
     std::cout << low << " " << high << std::endl;
 }
